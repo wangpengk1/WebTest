@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="../script/common.js" language="JavaScript"></script>
+    <script>
+        $(document).ready(function () {
+            console.log("ready");
+            $("form").children("[value='上传文件']").click(function (event) {
+                event.preventDefault();
+                let fileList = $("form :file").get()[0].files;
+                console.log(fileList);
+                if(fileList.length>0)
+                {
+                    var fData = new FormData();
+                    fData.append(fileList[0].name,fileList[0]);
+                    $.ajax({
+                        url:"/upload",
+                        method:"post",
+                        data:fData,
+                        processData:false,
+                        contentType:false,
+                        xhr:function () {
+                            console.log("here");
+                            let xmlhttp =  new XMLHttpRequest();
+                            xmlhttp.upload.addEventListener("progress",function (e) {
+                                $("#uploadprog").get()[0].value = Math.floor(e.loaded/e.total*100);
+                                console.log($("#uploadprog").get());
+                            });
+                            return xmlhttp;
+                        },
+                    }).done(function (data, textStatus, jqXHR) {
+                        // console.log(textStatus);
+                        // console.log(data);
+                        // console.log(jqXHR);
+                    });
+                }
+            });
+
+        })
+    </script>
+</head>
+<body>
+    <button onclick="AjaxPost('/resp','id=112233',btnBack1)">test Ajax</button><br/><br/><br/>
+    <form action="/upload" method="post"  enctype="multipart/form-data">
+        <input type="text" name="name" value="请输入姓名">
+        <input type="password" name="pwd" value="清输入密码">
+        <input type="file" name="myfile" defaultValue="c:\1.txt">
+        <input type="submit" value="上传文件">
+    </form>
+    <p><span>下载进度：</span><progress max="100" value="0" id="uploadprog"></progress></p>
+<!--    <input type="file" accept="image/*" name="myfile" value="adw" id="img_input">-->
+<!--    <button onclick="uploadImage()">上传</button>-->
+</body>
+</html>

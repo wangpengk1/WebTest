@@ -1,0 +1,65 @@
+h1
+{
+    background: coral;
+    margin: 5px;
+    padding-left: 5px;
+    border-radius: 5px;
+}
+
+.xTable
+{
+    width: 70%;
+    border: 1px solid #cccccc;
+    border-collapse: collapse;
+    empty-cells: show;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%,0);
+}
+
+.xTable textarea
+{
+    width: 100%;
+}
+
+.xtime
+{
+    display: table-cell;
+    padding-right: 20px;
+}
+
+.xtitle{
+    font-family: 微软雅黑;
+    font-size: 26px;
+    font-weight: bold;
+    border-bottom:1px dashed #CCCCCC;
+    color: #255e95;
+}
+
+.xHeadCell
+{
+    text-align: center;
+    font-family: 微软雅黑;
+    font-size: 16px;
+    font-weight: bold;
+    color: #255e95;
+    background-color:#e9faff;
+    border: 1px solid #cccccc;
+}
+
+.xHeadCell1
+{
+    font-weight: normal;
+    color: black;
+}
+
+.xHead
+{
+    background: #e9faff;
+}
+
+.xDataCell
+{
+    border: 1px solid #cccccc;
+}
+
